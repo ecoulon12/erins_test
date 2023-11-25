@@ -43,7 +43,11 @@ grovepi.pinMode(water_sensor,"INPUT")
 
 while True:
     try:
-        print(grovepi.digitalRead(water_sensor))
+        # print(grovepi.digitalRead(water_sensor))
+        if (grovepi.digitalRead(water_sensor)):
+            print("crying rn :/")
+        else:
+            print("not crying rn :)")
         time.sleep(.5)
 
     except IOError:
