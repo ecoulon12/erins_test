@@ -42,12 +42,13 @@ import grovepi
 
 # Connect the Grove Sound Sensor to analog port A0
 # SIG,NC,VCC,GND
+water_sensor = 2
 sound_sensor = 0
 
 # Connect the Grove LED to digital port D5
 # SIG,NC,VCC,GND
 led = 5
-
+grovepi.pinMode(water_sensor,"INPUT")
 grovepi.pinMode(sound_sensor,"INPUT")
 grovepi.pinMode(led,"OUTPUT")
 
