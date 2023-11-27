@@ -17,6 +17,7 @@ def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
 
 def on_press(key):
+    print("key pressed!")
     try: 
         k = key.char # single-char keys
     except: 
