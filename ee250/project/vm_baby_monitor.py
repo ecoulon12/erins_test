@@ -29,6 +29,19 @@ def on_press(key):
         print("SELF_REG_MODE")
         # send "SELF_REG_MODE
         client.publish("monitor/mode", "SELFREG", 0, False)
+        
+def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
+    if str(msg.payload, "utf-8") == "BABY":
+        #set mode to baby monitor
+        mode = 1
+        print("entering baby mode...")
+        time.sleep(1)
+
+    elif str(msg.payload, "utf-8") == "SELFREG":
+        #set mode to self regulation
+        mode = 2
+        print("entering self reg mode...")
+        time.sleep(1)
 
 if __name__ == '__main__':
     #setup the keyboard event listener
@@ -40,6 +53,7 @@ if __name__ == '__main__':
     client.on_message = on_message
     client.on_connect = on_connect
     client.connect(host="test.mosquitto.org", port=1883, keepalive=60)
+    client.message_callback_add("monitor/mode", on_modeMsg)
     client.loop_start()
 
     while True:
