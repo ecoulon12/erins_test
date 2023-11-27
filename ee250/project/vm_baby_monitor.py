@@ -24,11 +24,11 @@ def on_press(key):
     if k == 'w':
         print("BABY_MODE")
         #send "w" character to rpi
-        client.publish("monitor/mode", "BABY_MODE", 0, False)
+        client.publish("monitor/mode", "BABY", 0, False)
     elif k == 'a':
         print("SELF_REG_MODE")
         # send "SELF_REG_MODE
-        client.publish("monitor/mode", "SELF_REG_MODE", 0, False)
+        client.publish("monitor/mode", "SELFREG", 0, False)
 
 if __name__ == '__main__':
     #setup the keyboard event listener
@@ -44,3 +44,6 @@ if __name__ == '__main__':
 
     while True:
         time.sleep(1)
+        client.publish("monitor/mode", "BABY", 0, False)
+        time.sleep(2)
+        client.publish("monitor/mode", "SELFREG", 0, False)
