@@ -31,17 +31,18 @@ def on_press(key):
         client.publish("monitor/mode", "SELFREG", 0, False)
 
 def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
-    if str(msg.payload, "utf-8") == "crying":
-        #set mode to baby monitor
-        mode = 1
-        print("baby is crying!")
-        time.sleep(1)
+    # if str(msg.payload, "utf-8") == "crying":
+    #     #set mode to baby monitor
+    #     mode = 1
+    #     print("baby is crying!")
+    #     time.sleep(1)
 
-    elif str(msg.payload, "utf-8") == "happy":
-        #set mode to self regulation
-        mode = 2
-        print("baby is happy")
-        time.sleep(1)
+    # elif str(msg.payload, "utf-8") == "happy":
+    #     #set mode to self regulation
+    #     mode = 2
+    #     print("baby is happy")
+    #     time.sleep(1)
+    print("message from monitor: ", msg.payload)
 
 if __name__ == '__main__':
     #setup the keyboard event listener
