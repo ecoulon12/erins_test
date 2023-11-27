@@ -12,6 +12,7 @@ tears = 0
 cries = 0
 happiness_level = "n/a"
 
+
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
     grovepi.pinMode(water_sensor,"INPUT")
@@ -57,17 +58,18 @@ if __name__ == '__main__':
         cries = grovepi.analogRead(sound_sensor)
         #sample water sensor and sound sensor every half second
         #determine "happiness level" of baby/student
-        print(tears)
-        print(cries)
+        if (tears>150 & cries):
+            client.publish("monitor/baby_status", "baby mode")     
+        
 
-        if (mode == baby_mode):
-            #publish a message here
-            #client.publish("monitor/baby_status", "baby mode")
-            print("baby mode")
+        # if (mode == baby_mode):
+        #     #publish a message here
+        #     #client.publish("monitor/baby_status", "baby mode")
+        #     print("baby mode")
 
-        elif (mode == self_reg_mode):
-            #publish a message here
-            #client.publish("monitor/baby_status", "self reg mode")
-            print("self reg")
+        # elif (mode == self_reg_mode):
+        #     #publish a message here
+        #     #client.publish("monitor/baby_status", "self reg mode")
+        #     print("self reg")
 
             
