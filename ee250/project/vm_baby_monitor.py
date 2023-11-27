@@ -1,8 +1,8 @@
-"""publisher baby monitor code. Run on VM. Not currently working"""
+"""publisher baby monitor code. Run on VM. Not currently"""
 
 import paho.mqtt.client as mqtt
 import time
-import keyboard
+from pynput import keyboard
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
@@ -32,7 +32,7 @@ def on_press(key):
 
 if __name__ == '__main__':
     #setup the keyboard event listener
-    lis = keyboard.hook(on_press)
+    lis = keyboard.Listener(on_press=on_press)
     lis.start() # start to listen on a separate thread
 
     #this section is covered in publisher_and_subscriber_example.py
