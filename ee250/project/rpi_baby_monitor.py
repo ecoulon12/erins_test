@@ -57,6 +57,8 @@ if __name__ == '__main__':
         cries = grovepi.analogRead(sound_sensor)
         #sample water sensor and sound sensor every half second
         #determine "happiness level" of baby/student
+        print(tears)
+        print(cries)
 
         if (mode == baby_mode):
             #publish a message here
