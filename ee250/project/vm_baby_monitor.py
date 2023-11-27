@@ -36,6 +36,7 @@ def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
         mode = 1
         print("baby is crying!")
         time.sleep(1)
+    print(msg.payload)
 
     # elif str(msg.payload, "utf-8") == "happy":
     #     #set mode to self regulation

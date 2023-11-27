@@ -59,7 +59,7 @@ if __name__ == '__main__':
         #sample water sensor and sound sensor every half second
         #determine "happiness level" of baby/student
         print("tears: ", tears, "sound: ", cries)
-        if (cries>300):
+        if (cries>150):
             client.publish("monitor/baby_status", "crying")
         #print("sending baby status: crying")
         # else:
