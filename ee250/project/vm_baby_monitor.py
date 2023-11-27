@@ -1,10 +1,8 @@
-"""EE 250L Lab 04 Starter Code
-
-Run vm_publisher.py in a separate terminal on your VM."""
+"""publisher baby monitor code. Run on VM. Not currently working"""
 
 import paho.mqtt.client as mqtt
 import time
-from pynput import keyboard
+import keyboard
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
@@ -34,7 +32,7 @@ def on_press(key):
 
 if __name__ == '__main__':
     #setup the keyboard event listener
-    lis = keyboard.Listener(on_press=on_press)
+    lis = keyboard.hook(on_press)
     lis.start() # start to listen on a separate thread
 
     #this section is covered in publisher_and_subscriber_example.py
