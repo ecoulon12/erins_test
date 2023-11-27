@@ -54,7 +54,7 @@ if __name__ == '__main__':
         # if grovepi.digitalRead(button):
         #     client.publish("FR/button", "Button pressed!")
         time.sleep(.5)
-        tears = 1/grovepi.digitalRead(water_sensor)
+        tears = grovepi.digitalRead(water_sensor)
         cries = grovepi.analogRead(sound_sensor)
         #sample water sensor and sound sensor every half second
         #determine "happiness level" of baby/student
