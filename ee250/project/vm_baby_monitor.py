@@ -29,18 +29,18 @@ def on_press(key):
         print("SELF_REG_MODE")
         # send "SELF_REG_MODE
         client.publish("monitor/mode", "SELFREG", 0, False)
-        
+
 def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
-    if str(msg.payload, "utf-8") == "BABY":
+    if str(msg.payload, "utf-8") == "crying":
         #set mode to baby monitor
         mode = 1
-        print("entering baby mode...")
+        print("baby is crying!")
         time.sleep(1)
 
-    elif str(msg.payload, "utf-8") == "SELFREG":
+    elif str(msg.payload, "utf-8") == "happy":
         #set mode to self regulation
         mode = 2
-        print("entering self reg mode...")
+        print("baby is happy")
         time.sleep(1)
 
 if __name__ == '__main__':

@@ -58,8 +58,13 @@ if __name__ == '__main__':
         cries = grovepi.analogRead(sound_sensor)
         #sample water sensor and sound sensor every half second
         #determine "happiness level" of baby/student
+        print("tears: ", tears)
         if (tears>150 & cries):
-            client.publish("monitor/baby_status", "baby mode")     
+            print("sending baby status: crying")
+            client.publish("monitor/baby_status", "crying") 
+        else:
+            print("sending baby status: happy")
+            client.publish("monitor/baby_status", "happy") 
         
 
         # if (mode == baby_mode):
