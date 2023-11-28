@@ -13,9 +13,12 @@ def on_connect(client, userdata, flags, rc):
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
-    if (str(msg.payload, "utf-8") == "1"):
-        print("currently crying level 1 :(")
-        client.publish("monitor/response", "hang in there!", 0, False)
+    # if (str(msg.payload, "utf-8") == "1"):
+    #     print("currently crying level 1 :(")
+    #     client.publish("monitor/response", "hang in there!", 0, False)
+    cryLevel = int(msg.payload.decode("utf-8"))
+    print("cryLevel int: ", cryLevel)
+    #GENERATE A POST REQUEST
 
     
 def on_press(key):
@@ -28,13 +31,7 @@ def on_press(key):
         print("hang in there")
         #send "w" character to rpi
         client.publish("monitor/response", "hang in there!", 0, False)
-# def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
-#     if str(msg.payload, "utf-8") == "crying":
-#         #set mode to baby monitor
-#         mode = 1
-#         print("baby is crying!")
-#         time.sleep(1)
-#     print(msg.payload)
+
 
 if __name__ == '__main__':
     #setup the keyboard event listener
