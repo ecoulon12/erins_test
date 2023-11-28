@@ -16,6 +16,16 @@ def on_message(client, userdata, msg):
     # if (str(msg.payload, "utf-8") == "crying"):
     #     print("currently crying :(")
     
+def on_press(key):
+    try: 
+        k = key.char # single-char keys
+    except: 
+        k = key.name # other keys
+    
+    if k == 'w':
+        print("hang in there")
+        #send "w" character to rpi
+        client.publish("monitor/mode", "hang in there!", 0, False)
 # def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
 #     if str(msg.payload, "utf-8") == "crying":
 #         #set mode to baby monitor
@@ -25,6 +35,9 @@ def on_message(client, userdata, msg):
 #     print(msg.payload)
 
 if __name__ == '__main__':
+    #setup the keyboard event listener
+    lis = keyboard.Listener(on_press=on_press)
+    lis.start() # start to listen on a separate thread
 
     #this section is covered in publisher_and_subscriber_example.py
     client = mqtt.Client()
