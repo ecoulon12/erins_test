@@ -54,12 +54,12 @@ if __name__ == '__main__':
         # if grovepi.digitalRead(button):
         #     client.publish("FR/button", "Button pressed!")
         time.sleep(.5)
-        tears = grovepi.digitalRead(water_sensor)
+        tears = not grovepi.digitalRead(water_sensor)
         cries = grovepi.analogRead(sound_sensor)
         #sample water sensor and sound sensor every half second
         #determine "happiness level" of baby/student
         print("tears: ", tears, "sound: ", cries)
-        if (cries>150):
+        if (cries>150 or tears):
             client.publish("status/mode", "crying")
         #print("sending baby status: crying")
         # else:

@@ -15,6 +15,7 @@ def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
     if (str(msg.payload, "utf-8") == "crying"):
         print("currently crying :(")
+    
 
 
 def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
@@ -24,13 +25,6 @@ def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
         print("baby is crying!")
         time.sleep(1)
     print(msg.payload)
-
-    # elif str(msg.payload, "utf-8") == "happy":
-    #     #set mode to self regulation
-    #     mode = 2
-    #     print("baby is happy")
-    #     time.sleep(1)
-    #print("message from monitor: ", msg.payload)
 
 if __name__ == '__main__':
 
