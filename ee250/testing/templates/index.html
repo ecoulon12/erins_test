@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Monitor Control</title>
+</head>
+<body>
+    <h1>Baby Monitor Control</h1>
+
+    <div>
+        <h2>Baby Status:</h2>
+        <p id="baby-status">Sleeping</p>
+    </div>
+
+    <div>
+        <h2>Lullaby Status:</h2>
+        <p id="lullaby-status">Off</p>
+    </div>
+
+    <button id="turn-on-lullaby">Turn On Lullaby</button>
+
+    <script>
+        document.getElementById("turn-on-lullaby").addEventListener("click", function() {
+            // Update the lullaby status on the website
+            document.getElementById("lullaby-status").innerText = "On";
+
+            // Send a request to the Flask server to turn on the lullaby
+            fetch("/turn-on-lullaby", { method: "POST" })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
+        });
+    </script>
+</body>
+</html>

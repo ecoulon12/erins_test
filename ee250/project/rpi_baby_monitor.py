@@ -58,22 +58,22 @@ if __name__ == '__main__':
         time.sleep(.5)
         tears = not grovepi.digitalRead(water_sensor)
         cries = grovepi.analogRead(sound_sensor)
+        cryinglevel = 0
         #sample water sensor and sound sensor every half second
         #determine "happiness level" of baby/student
         print("tears: ", tears, "sound: ", cries)
         if(cries<150 and not tears):
-            client.publish("monitor/status", "happy!")
+            cryinglevel = 0
         elif (cries<150 and tears):
-            client.publish("monitor/status", "crying level 1")
-            grovepi.digitalWrite(buzzer,1)
-            time.sleep(.5)
-            grovepi.digitalWrite(buzzer,0)            
+            cryinglevel = 1           
         elif(cries<300 and tears):
-            client.publish("monitor/status", "crying level 2")
+            cryinglevel = 2
         elif(cries<500 and tears):
-            client.publish("monitor/status", "crying level 3")
+            cryinglevel = 3   
         elif(cries>500 and tears):
-            client.publish("monitor/status", "crying level 4")
+            cryinglevel = 4   
+
+        client.publish("monitor/status", str(cryinglevel))
     #not wet and silent (not crying and not screaming) - happy
     #wet and silent  - level 1
     #wet and over 150 - level 2
