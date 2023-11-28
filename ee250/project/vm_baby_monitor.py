@@ -16,15 +16,13 @@ def on_message(client, userdata, msg):
     # if (str(msg.payload, "utf-8") == "crying"):
     #     print("currently crying :(")
     
-
-
-def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
-    if str(msg.payload, "utf-8") == "crying":
-        #set mode to baby monitor
-        mode = 1
-        print("baby is crying!")
-        time.sleep(1)
-    print(msg.payload)
+# def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
+#     if str(msg.payload, "utf-8") == "crying":
+#         #set mode to baby monitor
+#         mode = 1
+#         print("baby is crying!")
+#         time.sleep(1)
+#     print(msg.payload)
 
 if __name__ == '__main__':
 
@@ -33,7 +31,7 @@ if __name__ == '__main__':
     client.on_message = on_message
     client.on_connect = on_connect
     client.connect(host="test.mosquitto.org", port=1883, keepalive=60)
-    client.message_callback_add("monitor/mode", on_modeMsg)
+    # client.message_callback_add("monitor/mode", on_modeMsg)
     client.loop_start()
 
     while True:
