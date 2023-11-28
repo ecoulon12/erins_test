@@ -42,6 +42,6 @@ if __name__ == '__main__':
 
     while True:
         time.sleep(1)
-        client.publish("monitor/mode", "BABY", 0, False)
-        time.sleep(2)
-        client.publish("monitor/mode", "SELFREG", 0, False)
+        # client.publish("monitor/mode", "BABY", 0, False)
+        # time.sleep(2)
+        # client.publish("monitor/mode", "SELFREG", 0, False)
