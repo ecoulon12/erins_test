@@ -8,7 +8,7 @@ def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
 
     #subscribe to topics of interest here
-    client.subscribe("monitor/mode")
+    client.subscribe("status/mode")
 
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):

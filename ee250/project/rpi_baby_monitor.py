@@ -60,7 +60,7 @@ if __name__ == '__main__':
         #determine "happiness level" of baby/student
         print("tears: ", tears, "sound: ", cries)
         if (cries>150):
-            client.publish("monitor/baby_status", "crying")
+            client.publish("status/mode", "crying")
         #print("sending baby status: crying")
         # else:
         #     print("sending baby status: happy")
