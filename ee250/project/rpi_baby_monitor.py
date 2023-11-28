@@ -59,22 +59,21 @@ if __name__ == '__main__':
         #sample water sensor and sound sensor every half second
         #determine "happiness level" of baby/student
         print("tears: ", tears, "sound: ", cries)
-        if (cries>150 or tears):
-            client.publish("status/mode", "crying")
-        #print("sending baby status: crying")
-        # else:
-        #     print("sending baby status: happy")
-        #     client.publish("monitor/baby_status", "happy") 
-        
+        if(cries<150 and not tears):
+            client.publish("status/mode", "happy!") 
+        elif (cries<150 and tears):
+            client.publish("status/mode", "crying level 1")
+        elif(cries<300 and tears):
+            client.publish("status/mode", "crying level 2")
+        elif(cries<500 and tears):
+            client.publish("status/mode", "crying level 3")
+        elif(cries>500 and tears):
+            client.publish("status/mode", "crying level 4")
+    #not wet and silent (not crying and not screaming) - happy
+    #wet and silent  - level 1
+    #wet and over 150 - level 2
+    #wet and 300 - level 3
+    #wet and over 500 - level 4
 
-        # if (mode == baby_mode):
-        #     #publish a message here
-        #     #client.publish("monitor/baby_status", "baby mode")
-        #     print("baby mode")
-
-        # elif (mode == self_reg_mode):
-        #     #publish a message here
-        #     #client.publish("monitor/baby_status", "self reg mode")
-        #     print("self reg")
 
             
