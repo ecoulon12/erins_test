@@ -18,7 +18,7 @@ def on_connect(client, userdata, flags, rc):
     grovepi.pinMode(water_sensor,"INPUT")
     grovepi.pinMode(sound_sensor,"INPUT")
     #subscribe to topics of interest here
-    client.subscribe("monitor/mode")
+    client.subscribe("monitor/response")
     #init mode to baby monitor
     mode = 1
 
@@ -60,15 +60,15 @@ if __name__ == '__main__':
         #determine "happiness level" of baby/student
         print("tears: ", tears, "sound: ", cries)
         if(cries<150 and not tears):
-            client.publish("status/mode", "happy!") 
+            client.publish("monitor/status", "happy!") 
         elif (cries<150 and tears):
-            client.publish("status/mode", "crying level 1")
+            client.publish("monitor/status", "crying level 1")
         elif(cries<300 and tears):
-            client.publish("status/mode", "crying level 2")
+            client.publish("monitor/status", "crying level 2")
         elif(cries<500 and tears):
-            client.publish("status/mode", "crying level 3")
+            client.publish("monitor/status", "crying level 3")
         elif(cries>500 and tears):
-            client.publish("status/mode", "crying level 4")
+            client.publish("monitor/status", "crying level 4")
     #not wet and silent (not crying and not screaming) - happy
     #wet and silent  - level 1
     #wet and over 150 - level 2

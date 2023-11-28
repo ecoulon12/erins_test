@@ -8,14 +8,14 @@ def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
 
     #subscribe to topics of interest here
-    client.subscribe("status/mode")
+    client.subscribe("monitor/status")
 
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
     if (str(msg.payload, "utf-8") == "crying level 1"):
         print("currently crying level 1 :(")
-        client.publish("monitor/mode", "hang in there!", 0, False)
+        client.publish("monitor/response", "hang in there!", 0, False)
 
     
 def on_press(key):
@@ -27,7 +27,7 @@ def on_press(key):
     if k == 'w':
         print("hang in there")
         #send "w" character to rpi
-        client.publish("monitor/mode", "hang in there!", 0, False)
+        client.publish("monitor/response", "hang in there!", 0, False)
 # def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
 #     if str(msg.payload, "utf-8") == "crying":
 #         #set mode to baby monitor
