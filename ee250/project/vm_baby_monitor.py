@@ -14,21 +14,6 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
 
-def on_press(key):
-    print("key pressed!")
-    try: 
-        k = key.char # single-char keys
-    except: 
-        k = key.name # other keys
-    
-    if k == 'w':
-        print("BABY_MODE")
-        #send "w" character to rpi
-        client.publish("monitor/mode", "BABY", 0, False)
-    elif k == 'a':
-        print("SELF_REG_MODE")
-        # send "SELF_REG_MODE
-        client.publish("monitor/mode", "SELFREG", 0, False)
 
 def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
     if str(msg.payload, "utf-8") == "crying":
@@ -46,9 +31,6 @@ def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
     #print("message from monitor: ", msg.payload)
 
 if __name__ == '__main__':
-    #setup the keyboard event listener
-    lis = keyboard.Listener(on_press=on_press)
-    lis.start() # start to listen on a separate thread
 
     #this section is covered in publisher_and_subscriber_example.py
     client = mqtt.Client()

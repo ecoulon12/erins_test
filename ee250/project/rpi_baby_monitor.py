@@ -30,13 +30,13 @@ def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
     if str(msg.payload, "utf-8") == "BABY":
         #set mode to baby monitor
         mode = 1
-        print("entering baby mode...")
+        #print("entering baby mode...")
         time.sleep(1)
 
     elif str(msg.payload, "utf-8") == "SELFREG":
         #set mode to self regulation
         mode = 2
-        print("entering self reg mode...")
+        #print("entering self reg mode...")
         time.sleep(1)
 
 if __name__ == '__main__':
