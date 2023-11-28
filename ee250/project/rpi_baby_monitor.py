@@ -66,6 +66,8 @@ if __name__ == '__main__':
         elif (cries<150 and tears):
             client.publish("monitor/status", "crying level 1")
             grovepi.digitalWrite(buzzer,1)
+            time.sleep(.5)
+            grovepi.digitalWrite(buzzer,0)            
         elif(cries<300 and tears):
             client.publish("monitor/status", "crying level 2")
         elif(cries<500 and tears):
