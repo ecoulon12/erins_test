@@ -41,18 +41,6 @@ def on_modeMsg(client, userdata, msg): # turn into on_modeMsg
         #print("entering self reg mode...")
         time.sleep(1)
 
-def play_increasing_frequencies():
-    # Define three increasing frequencies and their durations
-    frequencies = [400, 600, 800]
-    duration = 500  # milliseconds
-
-
-    for frequency in frequencies:
-        grovepi.tone(buzzer, frequency, duration)
-        time.sleep(duration / 1000.0)  
-    grovepi.tone(buzzer, 0)    
-    
-
 if __name__ == '__main__':
     #this section is covered in publisher_and_subscriber_example.py
     client = mqtt.Client()
@@ -75,7 +63,6 @@ if __name__ == '__main__':
         print("tears: ", tears, "sound: ", cries)
         if(cries<150 and not tears):
             client.publish("monitor/status", "happy!")
-            play_increasing_frequencies()
         elif (cries<150 and tears):
             client.publish("monitor/status", "crying level 1")
             grovepi.digitalWrite(buzzer,1)
