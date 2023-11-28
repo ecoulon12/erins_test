@@ -11,12 +11,14 @@ sound_sensor = 0
 tears = 0
 cries = 0
 happiness_level = "n/a"
+buzzer = 8
 
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
     grovepi.pinMode(water_sensor,"INPUT")
     grovepi.pinMode(sound_sensor,"INPUT")
+    grovepi.pinMode(buzzer,"OUTPUT")
     #subscribe to topics of interest here
     client.subscribe("monitor/response")
     #init mode to baby monitor
@@ -60,9 +62,11 @@ if __name__ == '__main__':
         #determine "happiness level" of baby/student
         print("tears: ", tears, "sound: ", cries)
         if(cries<150 and not tears):
-            client.publish("monitor/status", "happy!") 
+            client.publish("monitor/status", "happy!")
+            grovepi.digitalWrite(buzzer,0) 
         elif (cries<150 and tears):
             client.publish("monitor/status", "crying level 1")
+            grovepi.digitalWrite(buzzer,1)
         elif(cries<300 and tears):
             client.publish("monitor/status", "crying level 2")
         elif(cries<500 and tears):
